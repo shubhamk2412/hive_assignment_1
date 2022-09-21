@@ -1,9 +1,10 @@
 1. Download vechile sales data -> https://github.com/shashank-mishra219/Hive-Class/blob/main/sales_order_data.csv
-answer:- copied raw data into notepad and saved it as .csv then using filezilla copied it to cloudera local.
+answer:- 
+copied raw data into notepad and saved it as .csv then using filezilla copied it to cloudera local.
 
 2. Store raw data into hdfs location
-answer:- used comment as
-
+answer:- 
+used comment as
 hadoop fs -put /sales_order_data.csv /tmp
 
 3. Create a internal hive table "sales_order_csv" which will store csv data sales_order_csv .. make sure to skip header row while creating table
@@ -34,8 +35,7 @@ DEAL_SIZE string
 )
 row format delimited
 fields terminated by ','
-tblproperties("skip.header.line.count"="1")
-;
+tblproperties("skip.header.line.count"="1");
 
 4. Load data from hdfs path into "sales_order_csv" 
 answer:-
@@ -97,3 +97,9 @@ select min(sales) as min_sales,country from sale_order_orc group by(country) ord
 
 f. Calculate quartelry sales for each city
 answer:-
+select sum(sales) as quaterly_sales,qtr_id,city from sale_order_orc group by qtr_id,city order by(city);
+
+h. Find a month for each year in which maximum number of quantities were sold
+answer:-
+select max(quantity_ordered) as max_sales, month_id,year_id from sale_order_orc group by month_id,year_id order by year_id;
+
