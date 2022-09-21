@@ -74,3 +74,26 @@ answer:-
 from sales_order_csv insert overwrite table sales_order_orc select *;
 
 
+a. Calculatye total sales per year
+answer:-
+select sum(sales) as total_sales,year_id from sale_order__orc group by year_id;
+
+b. Find a product for which maximum orders were placed
+answer:-
+select quantity_ordered from sale_order_orc order by(quantity_ordered) desc limit 1;
+
+c. Calculate the total sales for each quarter
+answer:-
+select sum(sales) as total_sales,qtr_id,year_id from sale_order_orc group by qtr_id,year_id order by(year_id);
+
+d. In which quarter sales was minimum
+answer:-
+select min(sales) as min_sales,qtr_id,year_id from sale_order_orc group by qtr_id,year_id order by(min_sales) limit 1;
+
+e.In which country sales was maximum and in which country sales was minimum
+answer:-
+select max(sales) as max_sales,country from sale_order_orc group by(country) order by(max_sales) desc limit 1;
+select min(sales) as min_sales,country from sale_order_orc group by(country) order by(min_sales) limit 1;
+
+f. Calculate quartelry sales for each city
+answer:-
